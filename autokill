@@ -1,0 +1,29 @@
+#! /usr/bin/env bash
+# Kills a ros node upon the change of a timestamp of a
+# file. Use together with respawn="true" of a node
+# to get the node automatically restarted on a change in th# node. Allows very fast debugging - just compile or save, 
+# no need to restart the updated node manually.
+# Author: mmedvede@cs.uml.edu
+
+echo $0 $*
+
+get_stat(){
+  stat -c %y $1 | cut -d  '.' -f2 | cut -d ' ' -f1
+}
+
+
+if [ $# -lt 2 ];then
+  echo "Usage:
+  $0 <file_to_track> <node-to-kill-on-file-change>"
+else
+t=`get_stat $1`
+while [ true ];do
+  new_t=`get_stat $1`
+  if [ "$t" != "$new_t" ]; then
+    rosnode kill $2
+    t=$new_t
+  fi
+  sleep 0.1
+done
+
+fi

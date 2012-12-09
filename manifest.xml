@@ -1,0 +1,15 @@
+<package>
+  <description brief="autokill">
+
+    Autokill is a tool that allows faster ROS iterative debugging:
+    write code, save/compile, and see the result immediately.
+
+  </description>
+  <author>Mikhail Medvedev</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/autokill</url>
+
+</package>
+
+
