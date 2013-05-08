@@ -21,7 +21,8 @@ while [ true ];do
   new_t=`get_stat $1`
   if [ "$t" != "$new_t" ]; then
     rosnode kill $2
-    t=$new_t
+    sleep 5 # prevent erroneous restarts
+    t=`get_stat $1`
   fi
   sleep 0.1
 done
